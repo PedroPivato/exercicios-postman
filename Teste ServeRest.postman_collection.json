@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "673c07e3-d354-4e4f-afb0-ab0390f9ba70",
+		"name": "Teste ServeRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30722790",
+		"_collection_link": "https://cloudy-resonance-726362.postman.co/workspace/Estudos-EBAC~22e7d342-59fc-4eb8-a75a-8b82827d990a/collection/30722790-673c07e3-d354-4e4f-afb0-ab0390f9ba70?action=share&source=collection_link&creator=30722790"
+	},
+	"item": [
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Cadastrar produto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validar mensagem de sucesso\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code é 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Película de celular\",\r\n  \"preco\": 20,\r\n  \"descricao\": \"Acessório de celular\",\r\n  \"quantidade\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar produtos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"nome\": \"iPhone XR v3\",\r\n\"preco\": 4200,\r\n\"descricao\": \"Telefone celular\",\r\n\"quantidade\": 500\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}produtos/oEanh4yauNucTc4f",
+							"host": [
+								"{{local}}produtos"
+							],
+							"path": [
+								"oEanh4yauNucTc4f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Validar mensagem\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso \");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBlZHJvX3FhQGViYWMuY29tLmJyIiwicGFzc3dvcmQiOiJ0ZXN0ZSIsImlhdCI6MTY5ODI5MDA0NiwiZXhwIjoxNjk4MjkwNjQ2fQ.pY6hah73Qkj6r9CBptHWDmuMtADLa4MjORBHXI4x7wI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}produtos/gdnenSOKk8pOKzKz",
+							"host": [
+								"{{local}}produtos"
+							],
+							"path": [
+								"gdnenSOKk8pOKzKz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Produtos por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validar produto da lista\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Samsung 60 polegadas\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBlZHJvX3FhQGViYWMuY29tLmJyIiwicGFzc3dvcmQiOiJ0ZXN0ZSIsImlhdCI6MTY5ODI4ODg5OSwiZXhwIjoxNjk4Mjg5NDk5fQ.p1sSaMf0d3xpBjGIqPxbKHDVJJCpsdDHqJKdbUQgw2w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/produtos/K6leHdftCeOJj8BJ",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos",
+								"K6leHdftCeOJj8BJ"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USUÁRIOS",
+			"item": [
+				{
+					"name": "Lista de usuários",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validar listagem de usuarios\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"usuarios\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tempo de resposta é menor que 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}usuarios",
+							"host": [
+								"{{local}}usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro de usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 201 ou 400\", function () {\r",
+									"\r",
+									"pm.expect(pm.response.code).to.be.oneOf([201, 400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verificar mensagem de cadastro\"), function () {\r",
+									"\r",
+									"pm.expect(pm.response.text).to.include(\"Cadastro realizado com sucesso\");\r",
+									"pm.expect(pm.response.text).to.include(\"Este email já está sendo usado\");\r",
+									"\r",
+									"}\r",
+									"\r",
+									"pm.test(\"Tempo de resposta é menor que 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Marcos Pivato\",\r\n  \"email\": \"marcospivato@ebac.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}usuarios",
+							"host": [
+								"{{local}}usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar usuário por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tempo de resposta é menor que 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Body matches string\", function () {\r",
+									" /*   pm.expect(pm.response.text()).to.include(\"Usuário não encontrado\");\r",
+									"});\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}usuarios/E9XSYi9NjF9BPYjm",
+							"host": [
+								"{{local}}usuarios"
+							],
+							"path": [
+								"E9XSYi9NjF9BPYjm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verificar mensagem de cadastro\"), function () {\r",
+									"\r",
+									"pm.expect(pm.response.text).to.include(\"Registro excluído com sucesso\");\r",
+									"pm.expect(pm.response.text).to.include(\"Nenhum registro excluído\");\r",
+									"pm.expect(pm.response.text).to.include(\"Não é permitido excluir usuário com carrinho cadastrado\")\r",
+									"\r",
+									"}\r",
+									"\r",
+									"pm.test(\"Tempo de resposta é menor que 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}usuarios/NrL5fNto3dcWfvdj",
+							"host": [
+								"{{local}}usuarios"
+							],
+							"path": [
+								"NrL5fNto3dcWfvdj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200, 201 ou 400\", function () {\r",
+									"   pm.expect(pm.response.code).to.be.oneOf([200, 201, 400]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verificar mensagem de alteração de cadastro\"), function () {\r",
+									"\r",
+									"pm.expect(pm.response.text).to.include(\"Registro alterado com sucesso\");\r",
+									"pm.expect(pm.response.text).to.include(\"Cadastro realizado com sucesso\");\r",
+									"pm.expect(pm.response.text).to.include(\"Este email já esta sendo usado\");\r",
+									"\r",
+									"}\r",
+									"\r",
+									"pm.test(\"Tempo de resposta é menor que 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Pedro Pivato\",\r\n    \"email\": \"pedropivato@ebac.com.br\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}usuarios/E9XSYi9NjF9BPYjm",
+							"host": [
+								"{{local}}usuarios"
+							],
+							"path": [
+								"E9XSYi9NjF9BPYjm"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Testes da função usuários do ServeRest."
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resposta = pm.response.json();\r",
+							"pm.globals.set(\"token\", resposta.authorization);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBlZHJvX3FhQGViYWMuY29tLmJyIiwicGFzc3dvcmQiOiJ0ZXN0ZSIsImlhdCI6MTY5ODI4ODg1OSwiZXhwIjoxNjk4Mjg5NDU5fQ.CpdUSxfVCc61M3haZcLUiaS0TzaYod4cqw5JjNJJp1s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"pedro_qa@ebac.com.br\",\r\n  \"password\": \"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
